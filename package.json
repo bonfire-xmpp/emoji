@@ -1,0 +1,10 @@
+{
+  "main": "dist/emoji.json",
+  "scripts": {
+    "build": "node scripts/build.js"
+  },
+  "devDependencies": {
+    "jimp": "^0.16.1",
+    "twemoji-parser": "^13.1.0"
+  }
+}
