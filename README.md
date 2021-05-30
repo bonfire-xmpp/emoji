@@ -7,7 +7,7 @@ This repository processes the gemoji `emoji.json` file and generates a 64x64
 
 It also generates its own, processed `emoji.json` file, of the format:
 
-```json
+```js
 {
   "emojis": [
     {
@@ -22,7 +22,7 @@ It also generates its own, processed `emoji.json` file, of the format:
       "offset": [0,0]
     },
     ...
-  ],,
+  ],
   "byname": {
     "grinning-face": {
       "emoji": "😀",
