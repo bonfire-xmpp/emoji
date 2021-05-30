@@ -50,7 +50,9 @@ It also generates its own, processed `emoji.json` file, of the format:
       "offset": [0,0]
     },
     ...
-  }
+  },
+  "atlasWidth": 2752,
+  "atlasHeight": 2688
 }
 ```
 
