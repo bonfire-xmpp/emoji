@@ -4,6 +4,8 @@ const { parse } = require("twemoji-parser");
 
 const tokebab = x => x.replaceAll(/\s+/g, "-").toLowerCase();
 
+const kEmojiSize = 48;
+
 async function main() {
   const queue = [];
   const emojis = JSON.parse(fs.readFileSync("gemoji/db/emoji.json").toString("utf-8"));
@@ -17,11 +19,11 @@ async function main() {
   
   const numPerRow = Math.ceil(Math.sqrt(queue.length));
   const numRows = Math.ceil(queue.length / numPerRow);
-  const images = await Promise.all(queue.map(file => Jimp.read("twemoji/assets/72x72/" + file).then(image => image.resize(64, 64))));
+  const images = await Promise.all(queue.map(file => Jimp.read("twemoji/assets/72x72/" + file).then(image => image.resize(kEmojiSize, kEmojiSize))));
   const image = await new Promise(async resolve => 
-    new Jimp(numPerRow * 64, numRows * 64, 0x00000000, async (err, image) => {
+    new Jimp(numPerRow * kEmojiSize, numRows * kEmojiSize, 0x00000000, async (err, image) => {
       images.forEach((src, i) => {
-        const offset = [(i % numPerRow) * 64, Math.floor(i / numPerRow) * 64];
+        const offset = [(i % numPerRow) * kEmojiSize, Math.floor(i / numPerRow) * kEmojiSize];
         image.blit(src, ...offset);
         emojis[i].offset = offset;
       });
@@ -41,6 +43,7 @@ async function main() {
     emojis,
     atlasWidth: image.bitmap.width,
     atlasHeight: image.bitmap.height,
+    emojiSize: kEmojiSize,
   }));
 }
 

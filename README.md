@@ -19,7 +19,7 @@ It also generates its own, processed `emoji.json` file, of the format:
       "unicode_version": "6.1",
       "ios_version": "6.0",
       "name": "grinning-face",
-      "offset": [0,0]
+      "offset": [0, 0]
     },
     ...
   ],
@@ -33,7 +33,7 @@ It also generates its own, processed `emoji.json` file, of the format:
       "unicode_version": "6.1",
       "ios_version": "6.0",
       "name": "grinning-face",
-      "offset": [0,0]
+      "offset": [0, 0]
     },
     ...
   },
@@ -47,12 +47,13 @@ It also generates its own, processed `emoji.json` file, of the format:
       "unicode_version": "6.1",
       "ios_version": "6.0",
       "name": "grinning-face",
-      "offset": [0,0]
+      "offset": [0, 0]
     },
     ...
   },
-  "atlasWidth": 2752,
-  "atlasHeight": 2688
+  "atlasWidth": 2064,
+  "atlasHeight": 2016,
+  "emojiSize": 48
 }
 ```
 
