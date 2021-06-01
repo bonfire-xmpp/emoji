@@ -12,45 +12,15 @@ It also generates its own, processed `emoji.json` file, of the format:
   "emojis": [
     {
       "emoji": "😀",
-      "description": "grinning face",
-      "category": "Smileys & Emotion",
       "aliases": ["grinning"],
-      "tags": ["smile","happy"],
-      "unicode_version": "6.1",
-      "ios_version": "6.0",
-      "name": "grinning-face",
+      "name": "grinning",
+      "category": "Smileys & Emotion",
       "offset": [0, 0]
     },
     ...
   ],
-  "byname": {
-    "grinning-face": {
-      "emoji": "😀",
-      "description": "grinning face",
-      "category": "Smileys & Emotion",
-      "aliases": ["grinning"],
-      "tags": ["smile","happy"],
-      "unicode_version": "6.1",
-      "ios_version": "6.0",
-      "name": "grinning-face",
-      "offset": [0, 0]
-    },
-    ...
-  },
-  "byemoji": {
-    "😀": {
-      "emoji": "😀",
-      "description": "grinning face",
-      "category": "Smileys & Emotion",
-      "aliases": ["grinning"],
-      "tags": ["smile","happy"],
-      "unicode_version": "6.1",
-      "ios_version": "6.0",
-      "name": "grinning-face",
-      "offset": [0, 0]
-    },
-    ...
-  },
+  "byname": { "grinning": 0, ... },
+  "byemoji": { "😀": 0, ... },
   "atlasWidth": 2064,
   "atlasHeight": 2016,
   "emojiSize": 48

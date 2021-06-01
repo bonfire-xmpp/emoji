@@ -2,15 +2,15 @@ const Jimp = require("jimp");
 const fs = require("fs");
 const { parse } = require("twemoji-parser");
 
-const tokebab = x => x.replaceAll(/\s+/g, "-").toLowerCase();
-
 const kEmojiSize = 48;
+
+const stripEmoji = ({ emoji, aliases, name, category, offset }) => ({ emoji, aliases, name, category, offset });
 
 async function main() {
   const queue = [];
   const emojis = JSON.parse(fs.readFileSync("gemoji/db/emoji.json").toString("utf-8"));
   for (const e of emojis) {
-    e.name = tokebab(e.description);
+    e.name = e.aliases[0];
     queue.push(parse(e.emoji, {
       assetType: "png",
       buildUrl: (codepoints, assetType) => `${codepoints}.${assetType}`,
@@ -33,14 +33,16 @@ async function main() {
   
   const byname = {};
   const byemoji = {};
-  for (const e of emojis) {
-    byname[e.name] = e;
-    byemoji[e.emoji] = e;
+  for (const [i, e] of emojis.entries()) {
+    for (const alias of e.aliases) {
+      byname[alias] = i;
+    }
+    byemoji[e.emoji] = i;
   }
   fs.writeFileSync("./dist/emoji.json", JSON.stringify({
     byname,
     byemoji,
-    emojis,
+    emojis: emojis.map(stripEmoji),
     atlasWidth: image.bitmap.width,
     atlasHeight: image.bitmap.height,
     emojiSize: kEmojiSize,
