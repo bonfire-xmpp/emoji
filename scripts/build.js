@@ -19,15 +19,17 @@ async function main() {
   
   const numPerRow = Math.ceil(Math.sqrt(queue.length));
   const numRows = Math.ceil(queue.length / numPerRow);
+  const padding = 2;
   const images = await Promise.all(queue.map(file => Jimp.read("twemoji/assets/72x72/" + file).then(image => image.resize(kEmojiSize, kEmojiSize))));
   const image = await new Promise(async resolve => 
-    new Jimp(numPerRow * kEmojiSize, numRows * kEmojiSize, 0x00000000, async (err, image) => {
+    new Jimp(numPerRow * (kEmojiSize + padding), numRows * (kEmojiSize + padding), 0x00000000, async (err, image) => {
       images.forEach((src, i) => {
-        const offset = [(i % numPerRow) * kEmojiSize, Math.floor(i / numPerRow) * kEmojiSize];
+        const offset = [(i % numPerRow) * (kEmojiSize + padding), Math.floor(i / numPerRow) * (kEmojiSize + padding)];
         image.blit(src, ...offset);
         emojis[i].offset = offset;
       });
-      await image.write("./dist/atlas.png", () => resolve(image));
+      await image.writeAsync("./dist/atlas.png");
+      resolve(image);
     }
   ));
   
